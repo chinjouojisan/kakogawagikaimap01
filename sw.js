@@ -1,6 +1,6 @@
 // 加古川市議会マップ Service Worker
 // 更新したら VERSION を上げると、古いキャッシュが自動で消えます
-const VERSION = 'v4';
+const VERSION = 'v5';
 const CACHE = 'kakogawa-gate-' + VERSION;
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',

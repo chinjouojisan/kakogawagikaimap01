@@ -36,6 +36,28 @@ h2{font-family:var(--serif);color:var(--deep);font-size:1.5rem;margin:0 0 6px;le
 .lead{color:var(--mute);margin:0 0 22px;font-size:.95rem}
 section{margin:56px 0}
 
+/* depth background */
+body{position:relative}
+.bg{position:absolute;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
+.layer{position:absolute;will-change:transform}
+.glass{width:100%;aspect-ratio:4/3;border-radius:30px;border:1px solid rgba(255,255,255,.85);
+  background:linear-gradient(135deg,rgba(255,255,255,.6),rgba(180,220,255,.16) 60%,rgba(255,255,255,.35));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 40px 70px -40px rgba(30,100,190,.45)}
+.dot{width:100%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(160,215,255,.35) 55%,rgba(160,215,255,0) 72%)}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(10px,-18px)}}
+
+/* back to top */
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));
+  width:48px;height:48px;border-radius:50%;border:1px solid var(--edge);background:rgba(255,255,255,.74);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 12px 28px -12px rgba(30,100,190,.55);
+  cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .25s,transform .25s,visibility .25s;z-index:50;padding:0}
+.totop.show{opacity:1;visibility:visible;transform:none}
+.totop::before{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;
+  border-left:2.5px solid var(--deep);border-top:2.5px solid var(--deep);transform:translate(-50%,-30%) rotate(45deg)}
+.totop:focus-visible{outline:3px solid var(--water);outline-offset:3px}
+
 /* hero */
 .hero{margin:16px auto 0;max-width:1040px;padding:0 12px}
 .hero img{display:block;width:100%;height:auto;border-radius:28px;
@@ -116,6 +138,7 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
 </style>
 </head>
 <body>
+<div class="bg" id="bg" aria-hidden="true"></div>
 
 <header class="hero">
   <img src="ogp.png" alt="加古川市議会マップ。ガラス張りの議場と加古川の街並みを眺めるカコモ" width="1733" height="907">
@@ -232,7 +255,51 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
 
 <footer>加古川市議会マップ｜市民の立場で作る、加古川市政の入り口<br><a href="#disclaimer" id="discLink">免責事項</a></footer>
 
+<button class="totop" id="totop" type="button" aria-label="ページの先頭に戻る"></button>
+
 <script>
+// 背景：ガラスの層と光の粒（スクロールで奥行きをつける）
+(function(){
+  const bg=document.getElementById('bg'), tt=document.getElementById('totop');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed=20260929;
+  const R=()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);
+    t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+  const layers=[];
+  // [left%, top%, width, rotate, 奥行き係数(大きいほど奥), ぼかし]
+  [[-6,4,'clamp(180px,42vw,480px)',-8,.14,1.5],[64,15,'clamp(160px,34vw,400px)',7,.24,0],
+   [6,35,'clamp(200px,44vw,520px)',5,.10,2],[62,55,'clamp(170px,38vw,440px)',-6,.28,0],
+   [-4,74,'clamp(180px,40vw,460px)',9,.17,1],[60,88,'clamp(170px,36vw,420px)',-7,.22,1.5]
+  ].forEach(([l,t,w,r,k,b])=>{
+    const o=document.createElement('div');o.className='layer';
+    o.style.cssText='left:'+l+'%;top:'+t+'%;width:'+w;
+    const g=document.createElement('div');g.className='glass';
+    g.style.transform='rotate('+r+'deg)';if(b)g.style.filter='blur('+b+'px)';
+    o.appendChild(g);bg.appendChild(o);layers.push({el:o,pct:t/100,k});
+  });
+  for(let i=0;i<18;i++){
+    const size=18+Math.pow(R(),2)*110, top=R()*100;
+    const o=document.createElement('div');o.className='layer';
+    o.style.cssText='left:'+(R()*96).toFixed(1)+'%;top:'+top.toFixed(1)+'%;width:'+size.toFixed(0)+'px;opacity:'+(.35+R()*.45).toFixed(2);
+    const d=document.createElement('div');d.className='dot';
+    d.style.animation='drift '+(8+R()*8).toFixed(1)+'s ease-in-out '+(-R()*10).toFixed(1)+'s infinite alternate';
+    o.appendChild(d);bg.appendChild(o);layers.push({el:o,pct:top/100,k:.34-size/130*.28});
+  }
+  function frame(){
+    ticking=false;
+    const H=bg.clientHeight,c=scrollY+innerHeight/2;
+    for(const l of layers)l.el.style.transform='translate3d(0,'+((c-l.pct*H)*l.k).toFixed(1)+'px,0)';
+    tt.classList.toggle('show',scrollY>480);
+  }
+  let ticking=false;
+  const req=()=>{if(!ticking){ticking=true;requestAnimationFrame(frame)}};
+  addEventListener('scroll',reduce?()=>tt.classList.toggle('show',scrollY>480):req,{passive:true});
+  addEventListener('resize',req);
+  addEventListener('load',req);
+  frame();
+  tt.addEventListener('click',()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'}));
+})();
+
 // 年間カレンダーのデータ（会議録の集計後にここを書き換える）
 const MEETINGS = {3:"定例会",6:"定例会",9:"定例会・決算審査",12:"定例会"};
 const cal = document.getElementById('cal'), now = new Date().getMonth()+1;
