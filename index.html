@@ -6,7 +6,7 @@
 <title>加古川市議会マップ｜加古川市政をのぞく入り口</title>
 <meta name="description" content="加古川市議会・市政に関するサイトをまとめたゲートサイト。案内役はカコモ。">
 <meta property="og:title" content="加古川市議会マップ">
-<meta property="og:description" content="加古川市政をのぞく入り口。市議会を見て、遊んで、知る。">
+<meta property="og:description" content="加古川市政をのぞく入り口。市議会を見て、知って、学べる。">
 <meta property="og:image" content="ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#eaf5ff">
@@ -44,19 +44,28 @@ section{margin:56px 0}
 @keyframes rise{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
 
 /* kakomo */
-.kakomo{display:flex;gap:16px;align-items:flex-start;margin-top:28px}
-.kakomo .face{flex:none;width:84px;height:84px;border-radius:50%;overflow:hidden;
-  border:2px solid #fff;box-shadow:0 8px 20px -8px rgba(30,100,190,.5)}
-.kakomo .face img{width:100%;height:100%;display:block}
-.bubble{position:relative;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border:1px solid var(--edge);border-radius:6px 22px 22px 22px;padding:16px 20px;
-  box-shadow:0 12px 30px -16px rgba(30,100,190,.4)}
-.bubble p{margin:0}.bubble p+p{margin-top:.5em}
+.kakomo{margin-top:28px}
+.bubble{position:relative;width:100%;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--edge);border-radius:26px;padding:22px 26px;
+  box-shadow:0 16px 36px -20px rgba(30,100,190,.5);font-size:1.02rem}
+.bubble::after{content:"";position:absolute;left:46px;bottom:-13px;width:28px;height:14px;
+  background:rgba(255,255,255,.78);clip-path:polygon(0 0,100% 0,0 100%)}
+.bubble p{margin:0}.bubble p+p{margin-top:.6em}
 .bubble b{color:var(--deep)}
+.who{display:flex;align-items:center;gap:12px;margin:14px 0 0 22px}
+.who .face{flex:none;width:84px;height:84px;border-radius:50%;overflow:hidden;
+  border:2px solid #fff;box-shadow:0 8px 20px -8px rgba(30,100,190,.5)}
+.who .face img{width:100%;height:100%;display:block}
+.who span{font-family:var(--serif);color:var(--deep);font-weight:700}
 
 /* cards */
 .grid{display:grid;grid-template-columns:1fr;gap:18px}
-@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}.grid .wide{grid-column:1/-1}}
+@media(min-width:720px){
+  .grid{grid-template-columns:1fr 1fr}
+  .grid .wide{grid-column:1/-1;flex-direction:row}
+  .wide .thumb{flex:0 0 52%}
+  .wide .body{align-self:center;padding:24px 30px}
+}
 .card{display:flex;flex-direction:column;text-decoration:none;color:inherit;overflow:hidden;
   background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border:1px solid var(--edge);border-radius:22px;box-shadow:0 14px 36px -20px rgba(30,100,190,.5);
@@ -64,15 +73,12 @@ section{margin:56px 0}
 .card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -20px rgba(30,100,190,.6)}
 .card:focus-visible,summary:focus-visible{outline:3px solid var(--water);outline-offset:3px}
 .thumb{aspect-ratio:1200/630;background:linear-gradient(135deg,#bfe1ff,#f2f9ff 60%,#9ed3ff);position:relative;overflow:hidden}
-.wide .thumb{aspect-ratio:1200/500}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .thumb span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);
   font-size:1.2rem;color:var(--deep);opacity:.55;padding:12px;text-align:center}
 .body{padding:16px 20px 20px}
 .body h3{margin:0;font-family:var(--serif);font-size:1.2rem;color:var(--deep)}
-.body p{margin:4px 0 0;font-size:.92rem;color:var(--mute);line-height:1.7}
-.tag{display:inline-block;margin-bottom:6px;padding:1px 12px;border-radius:999px;font-size:.75rem;
-  background:rgba(124,196,255,.25);color:var(--deep)}
+.body p{margin:6px 0 0;font-size:.92rem;color:var(--mute);line-height:1.7}
 
 /* accordion */
 details{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -113,11 +119,11 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
 <main class="wrap">
 
   <div class="kakomo">
-    <div class="face"><img src="kakomo.png" alt="カコモ"></div>
     <div class="bubble">
-      <p>こんにちは、カコモです。ここは加古川市政をのぞく入り口だよ。</p>
-      <p>市議会のことを<b>見て・遊んで・知れる</b>サイトを、市民の立場から5つ作りました。気になるところから、どうぞ。</p>
+      <p><b>こんにちは、カコモです。</b></p>
+      <p>ここは加古川市政をのぞく入り口です。市議会を<b>見て、知って、学べる</b>サイトを、市民の立場から5つ作りました。気になるところから、どうぞ。</p>
     </div>
+    <div class="who"><div class="face"><img src="kakomo.png" alt="カコモ"></div><span>カコモ</span></div>
   </div>
 
   <section id="sites">
@@ -125,29 +131,29 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
     <p class="lead">タップすると、それぞれのサイトが開きます。</p>
     <div class="grid">
       <a class="card wide" href="http://kakogawa-giin-map.com">
-        <div class="thumb"><img src="img/giin-map.png" alt="" onerror="this.remove()"><span>加古川市議会議員マップ</span></div>
-        <div class="body"><span class="tag">見る</span><h3>加古川市議会議員マップ</h3>
+        <div class="thumb"><img src="img/giin-map.svg" alt="" loading="lazy" onerror="this.remove()"><span>加古川市議会議員マップ</span></div>
+        <div class="body"><h3>加古川市議会議員マップ</h3>
         <p>議員一人ひとりの活動を、市民の目で見えるようにしたサイトです。</p></div>
       </a>
       <a class="card" href="https://chinjouojisan.github.io/chinjoujudge01/">
-        <div class="thumb"><img src="img/chinjou-judge.png" alt="" onerror="this.remove()"><span>陳情ジャッジ</span></div>
-        <div class="body"><span class="tag">遊ぶ</span><h3>陳情ジャッジ</h3>
+        <div class="thumb"><img src="https://raw.githubusercontent.com/chinjouojisan/giin_photo/4493c68dac8130b417a56f088825f9c11b506371/010C9354-78CC-46E8-9227-86D864A961FE.PNG" alt="" loading="lazy" onerror="this.remove()"><span>陳情ジャッジ</span></div>
+        <div class="body"><h3>陳情ジャッジ</h3>
         <p>陳情・請願の趣旨を読んで、採択か不採択かを自分で判断する学習ゲーム。</p></div>
       </a>
       <a class="card" href="https://chinjouojisan.github.io/kakogawakessan07/">
-        <div class="thumb"><img src="img/kessan-r7.png" alt="" onerror="this.remove()"><span>令和7年度 決算チャレンジ</span></div>
-        <div class="body"><span class="tag">遊ぶ</span><h3>令和7年度 決算チャレンジ</h3>
-        <p>市の決算を題材に、お金の使われ方を楽しく学べます。</p></div>
+        <div class="thumb"><img src="img/kessan-r7.jpg" alt="" loading="lazy" onerror="this.remove()"><span>令和7年度 決算チャレンジ</span></div>
+        <div class="body"><h3>令和7年度 決算チャレンジ</h3>
+        <p>市の決算を題材に、お金の使われ方を学べます。</p></div>
       </a>
       <a class="card" href="https://chinjouojisan.github.io/kakogawa06kessan/">
-        <div class="thumb"><img src="img/kessan-r6.png" alt="" onerror="this.remove()"><span>令和6年度 決算チャレンジ</span></div>
-        <div class="body"><span class="tag">遊ぶ</span><h3>令和6年度 決算チャレンジ</h3>
+        <div class="thumb"><img src="img/kessan-r6.jpg" alt="" loading="lazy" onerror="this.remove()"><span>令和6年度 決算チャレンジ</span></div>
+        <div class="body"><h3>令和6年度 決算チャレンジ</h3>
         <p>ひとつ前の年度の決算で挑戦できるバージョンです。</p></div>
       </a>
       <a class="card" href="https://chinjouojisan.github.io/senkyo-guide/w-senkyo">
-        <div class="thumb"><img src="img/senkyo-guide.png" alt="" onerror="this.remove()"><span>加古川市w選挙ガイド</span></div>
-        <div class="body"><span class="tag">知る</span><h3>加古川市w選挙ガイド</h3>
-        <p>選挙の前に確認しておきたいことをまとめたガイドです。</p></div>
+        <div class="thumb"><img src="https://raw.githubusercontent.com/chinjouojisan/senkyo-guide/ade5d9136c4c0ca2c26333cc25bd0582fcb41fa3/ogp.PNG" alt="" loading="lazy" onerror="this.remove()"><span>加古川市 ダブル選挙ガイド2026</span></div>
+        <div class="body"><h3>加古川市 ダブル選挙ガイド2026</h3>
+        <p>2026年の市議選・市長選の候補者ガイド。公約やインタビューを市民目線で紹介しています。</p></div>
       </a>
     </div>
   </section>
@@ -187,7 +193,7 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
         <ul>
           <li>市議会を、市民が自分の目で確かめられるようにすること。</li>
           <li>議員でも市職員でもない、市民の立場で作っていること。</li>
-          <li>見る・遊ぶ・知るの3つの入り口を用意していること。</li>
+          <li>見て、知って、学べる、3つの入り口を用意していること。</li>
           <li>スマホで気軽に開けること。</li>
         </ul>
       </div>

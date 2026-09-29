@@ -1,7 +1,7 @@
 {
   "name": "加古川市議会マップ",
   "short_name": "議会マップ",
-  "description": "加古川市政をのぞく入り口。市議会を見て、遊んで、知る。",
+  "description": "加古川市政をのぞく入り口。市議会を見て、知って、学べる。",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
