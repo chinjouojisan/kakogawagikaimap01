@@ -1,15 +1,14 @@
 // 加古川市議会マップ Service Worker
 // 更新したら VERSION を上げると、古いキャッシュが自動で消えます
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = 'kakogawa-gate-' + VERSION;
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest',
-  'ogp.png', 'kakomo.png', 'icon.png', 'icon-192.png', 'icon-512.png',
-  'img/kessan-r7.jpg', 'img/kessan-r6.jpg', 'img/giin-map.svg'
+  'ogp.png', 'kakomo.png', 'icon.png', 'icon-192.png', 'icon-512.png'
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(CACHE).then(c => Promise.all(SHELL.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {
