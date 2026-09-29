@@ -95,6 +95,11 @@ details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
 .inner p{margin:.6em 0}
 .inner ul{margin:.4em 0;padding-left:1.2em}
 
+#learn h2{margin-bottom:18px}
+.inner h4{margin:1.2em 0 .1em;font-family:var(--serif);font-size:.98rem;color:var(--deep)}
+.inner h4:first-child{margin-top:.4em}
+footer a{color:var(--deep)}
+
 /* calendar */
 .cal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
 @media(min-width:720px){.cal{grid-template-columns:repeat(6,1fr)}}
@@ -121,7 +126,7 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
   <div class="kakomo">
     <div class="bubble">
       <p><b>こんにちは、カコモです。</b></p>
-      <p>ここは加古川市政をのぞく入り口です。市議会を<b>見て、知って、学べる</b>サイトを、市民の立場から5つ作りました。気になるところから、どうぞ。</p>
+      <p>　ここは加古川市政をのぞく入り口です。市議会を<b>見て、知って、学べる</b>サイトを、市民の立場から5つ作りました。気になるところから、どうぞ。</p>
     </div>
     <div class="who"><div class="face"><img src="kakomo.png" alt="カコモ"></div><span>カコモ</span></div>
   </div>
@@ -160,8 +165,7 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
 
   <section id="learn">
     <h2>市議会のこと、少しだけ</h2>
-    <p class="lead">開いて読むタイプです。必要なところだけどうぞ。</p>
-
+    
     <details>
       <summary>市議会って、どういうところ？</summary>
       <div class="inner">
@@ -199,9 +203,34 @@ footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40p
       </div>
     </details>
   </section>
+  <section id="disclaimer">
+    <details id="disc">
+      <summary>免責事項・ご利用にあたって</summary>
+      <div class="inner">
+        <h4>非公式のサイトです</h4>
+        <p>このまとめサイトと、リンク先の各サイトは、加古川市在住の一市民が個人で運営する、加古川市および加古川市議会の非公式のサイトです。市や議会が作成・監修したものではありません。特定の議員・会派・候補者・政党・団体を評価・推奨・批判したり、陳情や請願の是非を判断したりするものではありません。</p>
+
+        <h4>情報の出典と正確性</h4>
+        <p>掲載する情報は、会議録、市の公表資料、選挙公報などの公開情報にもとづきます。正確になるよう努めていますが、完全性・最新性は保証できず、誤りを含む場合があります。利用によって生じた損害について、運営者は責任を負いません。引用や確認の際は、原本をご覧ください。</p>
+
+        <h4>AIを使っています</h4>
+        <p>要約、分類、公約と質問の関連づけ、カコモの解説文などに、生成AI（Claude、Anthropic社）を使っています。AIの出力は誤りを含む場合があります。</p>
+
+        <h4>スコアや分類について</h4>
+        <p>議員マップのスコアは、公開情報から機械的に算出した活動量の目安で、議員の能力や実績を断定するものではありません。地域活動や市民対応など、議会の外での活動は含まれていません。また、決算チャレンジの法定給付・裁量などの分類は、加古川市の公式な分類ではありません。</p>
+
+        <h4>個人情報について</h4>
+        <p>陳情ジャッジや決算チャレンジでの選択やメモは、お使いの端末のブラウザ内にだけ保存され、外部には送信されません。各サイトでは、利用状況の把握のためにGoogleアナリティクスを使っています。個人を特定する情報は取得しておらず、Cookieはブラウザの設定で無効にできます。</p>
+
+        <h4>訂正・お問い合わせ</h4>
+        <p>誤りに気づいたときは、該当するサイトの問い合わせ窓口までご連絡ください。各サイトの取り扱いの詳細は、それぞれの利用規約・免責事項をご確認ください。</p>
+      </div>
+    </details>
+  </section>
+
 </main>
 
-<footer>加古川市議会マップ｜市民の立場で作る、加古川市政の入り口</footer>
+<footer>加古川市議会マップ｜市民の立場で作る、加古川市政の入り口<br><a href="#disclaimer" id="discLink">免責事項</a></footer>
 
 <script>
 // 年間カレンダーのデータ（会議録の集計後にここを書き換える）
@@ -213,6 +242,7 @@ for(let i=1;i<=12;i++){
   d.innerHTML='<b>'+i+'月</b>'+(MEETINGS[i]?'<small>'+MEETINGS[i]+'</small>':'');
   cal.appendChild(d);
 }
+document.getElementById('discLink').addEventListener('click',()=>{document.getElementById('disc').open=true;});
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 }
