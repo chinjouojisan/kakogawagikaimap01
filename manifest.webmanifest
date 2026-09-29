@@ -1,0 +1,15 @@
+{
+  "name": "加古川市議会マップ",
+  "short_name": "議会マップ",
+  "description": "加古川市政をのぞく入り口。市議会を見て、遊んで、知る。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eaf5ff",
+  "theme_color": "#eaf5ff",
+  "lang": "ja",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

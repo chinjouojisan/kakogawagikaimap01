@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>加古川市議会マップ｜加古川市政をのぞく入り口</title>
+<meta name="description" content="加古川市議会・市政に関するサイトをまとめたゲートサイト。案内役はカコモ。">
+<meta property="og:title" content="加古川市議会マップ">
+<meta property="og:description" content="加古川市政をのぞく入り口。市議会を見て、遊んで、知る。">
+<meta property="og:image" content="ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#eaf5ff">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#eaf5ff; --water:#7cc4ff; --deep:#0f3a78; --ink:#1b2b44; --mute:#5b6f8c;
+  --glass:rgba(255,255,255,.62); --edge:rgba(255,255,255,.9); --line:rgba(60,130,210,.18);
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.85;
+  background:linear-gradient(180deg,#dff0ff 0%,#f4faff 40%,#e6f3ff 100%) fixed;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(40vmax 40vmax at 90% 10%,rgba(124,196,255,.35),transparent 60%),
+             radial-gradient(35vmax 35vmax at 0% 60%,rgba(255,255,255,.9),transparent 60%)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+h2{font-family:var(--serif);color:var(--deep);font-size:1.5rem;margin:0 0 6px;letter-spacing:.04em}
+.lead{color:var(--mute);margin:0 0 22px;font-size:.95rem}
+section{margin:56px 0}
+
+/* hero */
+.hero{margin:16px auto 0;max-width:1040px;padding:0 12px}
+.hero img{display:block;width:100%;height:auto;border-radius:28px;
+  border:1px solid var(--edge);box-shadow:0 24px 60px -24px rgba(30,100,190,.45);
+  animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+
+/* kakomo */
+.kakomo{display:flex;gap:16px;align-items:flex-start;margin-top:28px}
+.kakomo .face{flex:none;width:84px;height:84px;border-radius:50%;overflow:hidden;
+  border:2px solid #fff;box-shadow:0 8px 20px -8px rgba(30,100,190,.5)}
+.kakomo .face img{width:100%;height:100%;display:block}
+.bubble{position:relative;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--edge);border-radius:6px 22px 22px 22px;padding:16px 20px;
+  box-shadow:0 12px 30px -16px rgba(30,100,190,.4)}
+.bubble p{margin:0}.bubble p+p{margin-top:.5em}
+.bubble b{color:var(--deep)}
+
+/* cards */
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}.grid .wide{grid-column:1/-1}}
+.card{display:flex;flex-direction:column;text-decoration:none;color:inherit;overflow:hidden;
+  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--edge);border-radius:22px;box-shadow:0 14px 36px -20px rgba(30,100,190,.5);
+  transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -20px rgba(30,100,190,.6)}
+.card:focus-visible,summary:focus-visible{outline:3px solid var(--water);outline-offset:3px}
+.thumb{aspect-ratio:1200/630;background:linear-gradient(135deg,#bfe1ff,#f2f9ff 60%,#9ed3ff);position:relative;overflow:hidden}
+.wide .thumb{aspect-ratio:1200/500}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.thumb span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);
+  font-size:1.2rem;color:var(--deep);opacity:.55;padding:12px;text-align:center}
+.body{padding:16px 20px 20px}
+.body h3{margin:0;font-family:var(--serif);font-size:1.2rem;color:var(--deep)}
+.body p{margin:4px 0 0;font-size:.92rem;color:var(--mute);line-height:1.7}
+.tag{display:inline-block;margin-bottom:6px;padding:1px 12px;border-radius:999px;font-size:.75rem;
+  background:rgba(124,196,255,.25);color:var(--deep)}
+
+/* accordion */
+details{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--edge);border-radius:18px;margin-bottom:12px;
+  box-shadow:0 10px 28px -20px rgba(30,100,190,.5)}
+summary{cursor:pointer;list-style:none;padding:16px 56px 16px 22px;position:relative;
+  font-family:var(--serif);font-size:1.1rem;color:var(--deep);font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:24px;top:50%;width:9px;height:9px;margin-top:-7px;
+  border-right:2px solid var(--water);border-bottom:2px solid var(--water);transform:rotate(45deg);transition:transform .25s}
+details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
+.inner{padding:0 22px 20px;animation:open .3s ease both}
+@keyframes open{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.inner p{margin:.6em 0}
+.inner ul{margin:.4em 0;padding-left:1.2em}
+
+/* calendar */
+.cal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+@media(min-width:720px){.cal{grid-template-columns:repeat(6,1fr)}}
+.m{border:1px solid var(--line);border-radius:14px;padding:8px 6px;text-align:center;background:rgba(255,255,255,.5);min-height:72px}
+.m b{display:block;font-size:.85rem;color:var(--mute);font-weight:500}
+.m small{display:block;font-size:.72rem;line-height:1.4;margin-top:2px;color:var(--deep)}
+.m.on{background:linear-gradient(160deg,#cfe9ff,#e9f5ff);border-color:var(--water)}
+.m.now{box-shadow:0 0 0 2px var(--deep)}
+.note{font-size:.8rem;color:var(--mute)}
+.pending{display:inline-block;padding:2px 12px;border-radius:999px;background:#fff;border:1px dashed var(--water);font-size:.85rem}
+
+footer{text-align:center;color:var(--mute);font-size:.8rem;padding:24px 20px 40px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="ogp.png" alt="加古川市議会マップ。ガラス張りの議場と加古川の街並みを眺めるカコモ" width="1733" height="907">
+</header>
+
+<main class="wrap">
+
+  <div class="kakomo">
+    <div class="face"><img src="kakomo.png" alt="カコモ"></div>
+    <div class="bubble">
+      <p>こんにちは、カコモです。ここは加古川市政をのぞく入り口だよ。</p>
+      <p>市議会のことを<b>見て・遊んで・知れる</b>サイトを、市民の立場から5つ作りました。気になるところから、どうぞ。</p>
+    </div>
+  </div>
+
+  <section id="sites">
+    <h2>5つのサイト</h2>
+    <p class="lead">タップすると、それぞれのサイトが開きます。</p>
+    <div class="grid">
+      <a class="card wide" href="http://kakogawa-giin-map.com">
+        <div class="thumb"><img src="img/giin-map.png" alt="" onerror="this.remove()"><span>加古川市議会議員マップ</span></div>
+        <div class="body"><span class="tag">見る</span><h3>加古川市議会議員マップ</h3>
+        <p>議員一人ひとりの活動を、市民の目で見えるようにしたサイトです。</p></div>
+      </a>
+      <a class="card" href="https://chinjouojisan.github.io/chinjoujudge01/">
+        <div class="thumb"><img src="img/chinjou-judge.png" alt="" onerror="this.remove()"><span>陳情ジャッジ</span></div>
+        <div class="body"><span class="tag">遊ぶ</span><h3>陳情ジャッジ</h3>
+        <p>陳情・請願の趣旨を読んで、採択か不採択かを自分で判断する学習ゲーム。</p></div>
+      </a>
+      <a class="card" href="https://chinjouojisan.github.io/kakogawakessan07/">
+        <div class="thumb"><img src="img/kessan-r7.png" alt="" onerror="this.remove()"><span>令和7年度 決算チャレンジ</span></div>
+        <div class="body"><span class="tag">遊ぶ</span><h3>令和7年度 決算チャレンジ</h3>
+        <p>市の決算を題材に、お金の使われ方を楽しく学べます。</p></div>
+      </a>
+      <a class="card" href="https://chinjouojisan.github.io/kakogawa06kessan/">
+        <div class="thumb"><img src="img/kessan-r6.png" alt="" onerror="this.remove()"><span>令和6年度 決算チャレンジ</span></div>
+        <div class="body"><span class="tag">遊ぶ</span><h3>令和6年度 決算チャレンジ</h3>
+        <p>ひとつ前の年度の決算で挑戦できるバージョンです。</p></div>
+      </a>
+      <a class="card" href="https://chinjouojisan.github.io/senkyo-guide/w-senkyo">
+        <div class="thumb"><img src="img/senkyo-guide.png" alt="" onerror="this.remove()"><span>加古川市w選挙ガイド</span></div>
+        <div class="body"><span class="tag">知る</span><h3>加古川市w選挙ガイド</h3>
+        <p>選挙の前に確認しておきたいことをまとめたガイドです。</p></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="learn">
+    <h2>市議会のこと、少しだけ</h2>
+    <p class="lead">開いて読むタイプです。必要なところだけどうぞ。</p>
+
+    <details>
+      <summary>市議会って、どういうところ？</summary>
+      <div class="inner">
+        <p>市議会は、市民が選んだ議員が集まり、市の予算や条例を話し合って決める場所です。市の仕事が正しく行われているかを、市長や市役所の側からチェックする役目もあります。</p>
+        <p>会議は誰でも傍聴できます。難しそうに見えても、暮らしに近い話がたくさん出てきます。</p>
+      </div>
+    </details>
+
+    <details id="calendar">
+      <summary>市議会の年間カレンダー（簡易版）</summary>
+      <div class="inner">
+        <p>年間でどの月にどんな会議が開かれるかの目安です。</p>
+        <div class="cal" id="cal"></div>
+        <p class="note">※一般的な開催時期をもとにした目安です。加古川市の実際の日程と時間は、過去4年分の会議録を集計してから反映します。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>会議の時間は？</summary>
+      <div class="inner">
+        <p><span class="pending">集計中</span></p>
+        <p>過去4年分の会議録から、会議ごとの開始・終了時刻を集計しています。データが揃ったらここに載せます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>このサイトの目的と特徴</summary>
+      <div class="inner">
+        <ul>
+          <li>市議会を、市民が自分の目で確かめられるようにすること。</li>
+          <li>議員でも市職員でもない、市民の立場で作っていること。</li>
+          <li>見る・遊ぶ・知るの3つの入り口を用意していること。</li>
+          <li>スマホで気軽に開けること。</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+</main>
+
+<footer>加古川市議会マップ｜市民の立場で作る、加古川市政の入り口</footer>
+
+<script>
+// 年間カレンダーのデータ（会議録の集計後にここを書き換える）
+const MEETINGS = {3:"定例会",6:"定例会",9:"定例会・決算審査",12:"定例会"};
+const cal = document.getElementById('cal'), now = new Date().getMonth()+1;
+for(let i=1;i<=12;i++){
+  const d=document.createElement('div');
+  d.className='m'+(MEETINGS[i]?' on':'')+(i===now?' now':'');
+  d.innerHTML='<b>'+i+'月</b>'+(MEETINGS[i]?'<small>'+MEETINGS[i]+'</small>':'');
+  cal.appendChild(d);
+}
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>
